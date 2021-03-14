@@ -31,6 +31,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.sql.rowset.serial.SerialJavaObject;
 import java.io.*;
 import java.util.Base64;
 
@@ -46,7 +47,7 @@ public class InsecureDeserializationTask extends AssignmentEndpoint {
         long before;
         long after;
         int delay;
-        if (!token.getName().equals(SerializationHelper.class.getName())) {
+        if (!token.getName().equals(VulnerableTaskHolder.class.getName())) {
             throw new InvalidClassException("Unauthorized deserialization", token.getName());
         }
         b64token = token.getName().replace('-', '+').replace('_', '/');
